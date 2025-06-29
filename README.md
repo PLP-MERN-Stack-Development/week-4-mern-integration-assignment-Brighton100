@@ -38,10 +38,6 @@ mern-blog/
 │ └── package.json
 └── README.md
 
-yaml
-Copy
-Edit
-
 ---
 
 ## 🛠️ Technologies Used
@@ -68,9 +64,6 @@ Edit
    cd server
 Install dependencies:
 
-bash
-Copy
-Edit
 npm install
 Create a .env file:
 
@@ -80,29 +73,19 @@ Edit
 MONGO_URI=mongodb://127.0.0.1:27017/mern_blog
 JWT_SECRET=supersecretkey
 Start the server:
-
-bash
-Copy
-Edit
 npm run dev
 💻 Frontend Setup
 Navigate to the client:
 
 bash
-Copy
-Edit
 cd ../client
 Install dependencies:
 
 bash
-Copy
-Edit
 npm install
 Start the frontend:
 
 bash
-Copy
-Edit
 npm start
 🔄 API Endpoints
 Method	Route	Description	Protected
@@ -115,7 +98,6 @@ PUT	/api/posts/:id	Update post	✅ Yes
 DELETE	/api/posts/:id	Delete post	✅ Yes
 
 🖼️ Screenshots
-Add these to the screenshots/ folder or embed from uploads.
 
 ✅ Backend Running
 
