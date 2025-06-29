@@ -76,3 +76,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 module.exports = app; 
+const postRoutes = require('./routes/postRoutes');
+...
+app.use('/api/posts', postRoutes);
