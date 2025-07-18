@@ -1,131 +1,265 @@
-# 📝 MERN Blog App
+A full-stack MERN (MongoDB, Express.js, React.js, Node.js) blog application with user authentication, CRUD operations for blog posts, comments, and advanced features.
 
-This is a full-stack **MERN (MongoDB, Express.js, React.js, Node.js)** blog application built for the Week 4 MERN Integration Assignment. It allows users to register, login, create blog posts, edit them, and delete them. The app includes authentication using JWT, and supports basic CRUD operations on blog posts.
-
----
-
-## 🚀 Features
-
-- 🔐 User authentication (JWT-based)
-- 📝 Full CRUD operations on blog posts
-- 🧑 Author info linked to posts
-- 📦 RESTful API with Express.js and MongoDB
-- ⚛️ React.js frontend with routing
-- 📦 Axios integration with token-based API access
-
----
-
-## 📁 Project Structure
-
+🚀 Features
+Core Features
+User Authentication: Register, login, and logout functionality
+Blog Posts: Create, read, update, and delete blog posts
+Categories: Organize posts by categories
+Comments: Add comments to blog posts
+Responsive Design: Modern UI with Tailwind CSS
+Real-time Updates: Optimistic UI updates for better UX
+Advanced Features
+Slug-based URLs: SEO-friendly URLs for blog posts
+View Count: Track post views
+Tags System: Add tags to posts for better organization
+Search Functionality: Search posts by title, content, or tags
+Pagination: Load posts with pagination support
+Draft/Published Status: Control post visibility
+User Roles: Support for admin and regular users
+🛠️ Tech Stack
+Backend
+Node.js: Runtime environment
+Express.js: Web framework
+MongoDB: Database
+Mongoose: ODM for MongoDB
+JWT: Authentication
+bcryptjs: Password hashing
+CORS: Cross-origin resource sharing
+Frontend
+React: UI library
+React Router: Client-side routing
+Axios: HTTP client
+Tailwind CSS: Utility-first CSS framework
+Vite: Build tool and dev server
+📁 Project Structure
 mern-blog/
-├── client/ # React front-end
-│ ├── public/
-│ ├── src/
-│ │ ├── components/ # Navbar, etc.
-│ │ ├── pages/ # Login, Register, Home, PostForm, PostDetails
-│ │ ├── services/ # Axios services (optional)
-│ │ ├── context/ # Global auth state (optional)
-│ │ └── App.jsx
-│ └── package.json
-├── server/ # Express.js backend
-│ ├── config/ # DB config (if needed)
-│ ├── controllers/ # authController, postController
-│ ├── middleware/ # JWT middleware
-│ ├── models/ # User, Post
-│ ├── routes/ # authRoutes, postRoutes
-│ ├── utils/ # (optional helpers)
-│ ├── server.js
-│ └── package.json
+├── client/                 # React frontend
+│   ├── public/            # Static files
+│   ├── src/
+│   │   ├── components/    # Reusable components
+│   │   │   ├── layout/    # Layout components
+│   │   │   ├── posts/     # Post-related components
+│   │   │   └── ui/        # UI components
+│   │   ├── pages/         # Page components
+│   │   ├── context/       # React context providers
+│   │   ├── services/      # API services
+│   │   └── App.jsx        # Main app component
+│   └── package.json
+├── server/                # Express backend
+│   ├── config/            # Configuration files
+│   ├── controllers/       # Route controllers
+│   ├── models/            # Mongoose models
+│   ├── routes/            # API routes
+│   ├── middleware/        # Custom middleware
+│   ├── utils/             # Utility functions
+│   └── server.js          # Main server file
 └── README.md
+🚀 Getting Started
+Prerequisites
+Node.js (v18 or higher)
+MongoDB (local installation or MongoDB Atlas)
+npm or yarn
+Installation
+Clone the repository
 
----
+git clone <repository-url>
+cd mern-blog
+Install server dependencies
 
-## 🛠️ Technologies Used
-
-- **Frontend:** React, React Router, Axios
-- **Backend:** Node.js, Express.js, MongoDB, Mongoose
-- **Auth:** JSON Web Tokens (JWT), bcrypt
-- **Dev Tools:** Nodemon, MongoDB Compass / MongoDB Atlas
-
----
-
-## 📦 Getting Started
-
-### ✅ Prerequisites
-
-- Node.js (v18+)
-- MongoDB (local or Atlas)
-- npm (or yarn)
-
-### 🔧 Backend Setup
-
-1. Navigate to the server:
-   ```bash
-   cd server
-Install dependencies:
-
+cd server
 npm install
-Create a .env file:
+Install client dependencies
 
-env
-Copy
-Edit
-MONGO_URI=mongodb://127.0.0.1:27017/mern_blog
-JWT_SECRET=supersecretkey
-Start the server:
-npm run dev
-💻 Frontend Setup
-Navigate to the client:
-
-bash
 cd ../client
-Install dependencies:
-
-bash
 npm install
-Start the frontend:
+Environment Setup
 
-bash
-npm start
-🔄 API Endpoints
-Method	Route	Description	Protected
-POST	/api/auth/register	Register user	❌ No
-POST	/api/auth/login	Login user, get token	❌ No
-GET	/api/posts	List all posts	❌ No
-GET	/api/posts/:id	Get single post	❌ No
-POST	/api/posts	Create post	✅ Yes
-PUT	/api/posts/:id	Update post	✅ Yes
-DELETE	/api/posts/:id	Delete post	✅ Yes
+Create .env files in both server and client directories:
 
-🖼️ Screenshots
+Server (.env)
 
-✅ Backend Running
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/mern-blog
+JWT_SECRET=your-super-secret-jwt-key
+NODE_ENV=development
+Client (.env)
 
-✅ Frontend Running
+VITE_API_URL=http://localhost:5000/api
+Start the development servers
 
-✅ Register Page
+Start the backend server
 
-✅ Login Page
+cd server
+npm run dev
+Start the frontend development server
 
-✅ Home Page
+cd client
+npm run dev
+Access the application
 
-✅ Post Details
+Frontend: http://localhost:5173
+Backend API: http://localhost:5000
+📚 API Documentation
+Authentication Endpoints
+Register User
+POST /api/auth/register
+Content-Type: application/json
 
-✅ New Post
+{
+  "username": "string",
+  "email": "string",
+  "password": "string"
+}
+Login User
+POST /api/auth/login
+Content-Type: application/json
 
-✅ Edit Post
+{
+  "email": "string",
+  "password": "string"
+}
+Get Current User
+GET /api/auth/me
+Authorization: Bearer <token>
+Posts Endpoints
+Get All Posts
+GET /api/posts?page=1&limit=10&category=categoryId
+Get Single Post
+GET /api/posts/:id
+Create Post
+POST /api/posts
+Authorization: Bearer <token>
+Content-Type: application/json
 
-📚 Resources
-MongoDB Docs
+{
+  "title": "string",
+  "content": "string",
+  "excerpt": "string",
+  "category": "categoryId",
+  "tags": ["tag1", "tag2"],
+  "isPublished": boolean
+}
+Update Post
+PUT /api/posts/:id
+Authorization: Bearer <token>
+Content-Type: application/json
 
-Express.js Docs
+{
+  "title": "string",
+  "content": "string",
+  "excerpt": "string",
+  "category": "categoryId",
+  "tags": ["tag1", "tag2"],
+  "isPublished": boolean
+}
+Delete Post
+DELETE /api/posts/:id
+Authorization: Bearer <token>
+Add Comment
+POST /api/posts/:id/comments
+Authorization: Bearer <token>
+Content-Type: application/json
 
-React Docs
+{
+  "content": "string"
+}
+Search Posts
+GET /api/posts/search?q=searchTerm
+Categories Endpoints
+Get All Categories
+GET /api/categories
+Create Category
+POST /api/categories
+Authorization: Bearer <token>
+Content-Type: application/json
 
-Mongoose Docs
+{
+  "name": "string",
+  "description": "string"
+}
+🎨 Features in Detail
+User Authentication
+JWT-based authentication
+Password hashing with bcrypt
+Protected routes
+User session management
+Blog Posts
+Rich text content
+SEO-friendly slugs
+Category organization
+Tag system
+Draft/published status
+View count tracking
+Comments System
+Add comments to posts
+User attribution
+Timestamp tracking
+Search & Filtering
+Search by title, content, or tags
+Filter by category
+Pagination support
+Responsive Design
+Mobile-first approach
+Modern UI with Tailwind CSS
+Loading states and error handling
+Optimistic updates
+🔧 Development
+Available Scripts
+Server
 
-JWT Docs
+npm run dev: Start development server with nodemon
+npm start: Start production server
+Client
 
-📌 Author
-Brighton – GitHub Classroom Assignment Submission
-GitHub Repo
+npm run dev: Start development server
+npm run build: Build for production
+npm run preview: Preview production build
+Database Models
+User Model
+{
+  username: String,
+  email: String,
+  password: String,
+  role: String,
+  avatar: String
+}
+Post Model
+{
+  title: String,
+  content: String,
+  slug: String,
+  excerpt: String,
+  author: ObjectId,
+  category: ObjectId,
+  tags: [String],
+  isPublished: Boolean,
+  viewCount: Number,
+  comments: [Comment]
+}
+Category Model
+{
+  name: String,
+  description: String
+}
+🚀 Deployment
+Backend Deployment
+Set up environment variables
+Configure MongoDB connection
+Deploy to platforms like Heroku, Railway, or Vercel
+Frontend Deployment
+Build the application: npm run build
+Deploy the dist folder to platforms like Vercel, Netlify, or GitHub Pages
+🤝 Contributing
+Fork the repository
+Create a feature branch
+Make your changes
+Add tests if applicable
+Submit a pull request
+📝 License
+This project is licensed under the MIT License.
+
+🙏 Acknowledgments
+MongoDB for the database
+Express.js team for the web framework
+React team for the UI library
+Tailwind CSS for the styling framework
